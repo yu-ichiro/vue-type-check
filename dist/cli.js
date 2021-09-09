@@ -26,7 +26,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
 const minimist_1 = __importDefault(require("minimist"));
 const index_1 = require("./index");
-const { workspace = "./", srcDir = "", onlyTemplate = false, onlyTypeScript = true, excludeDir = [], verbose = false, _: explicitTargetFiles = [], } = minimist_1.default(process.argv.slice(2), {
+const { workspace = "./", srcDir = "", onlyTypeScript, onlyTemplate, excludeDir = [], verbose, _: explicitTargetFiles = [], } = minimist_1.default(process.argv.slice(2), {
+    boolean: ["onlyTypeScript", "onlyTemplate", "verbose"],
+    default: {
+        onlyTypeScript: true,
+        onlyTemplate: false,
+        verbose: false
+    },
     alias: {
         onlyTypeScript: ["ts", "typescript", "Typescript", "onlyTypescript", "onlyTs", "only-ts", "only-typescript"],
         onlyTemplate: ["template", "Template", "only-template"],

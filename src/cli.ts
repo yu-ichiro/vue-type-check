@@ -6,12 +6,18 @@ import { check } from "./index";
 const {
   workspace = "./",
   srcDir = "",
-  onlyTemplate = false,
-  onlyTypeScript = true,
+  onlyTypeScript,
+  onlyTemplate,
   excludeDir = [],
-  verbose = false,
+  verbose,
   _: explicitTargetFiles = [],
 } = minimist(process.argv.slice(2), {
+  boolean: ["onlyTypeScript", "onlyTemplate", "verbose"],
+  default: {
+    onlyTypeScript: true,
+    onlyTemplate: false,
+    verbose: false
+  },
   alias: {
     onlyTypeScript: ["ts", "typescript", "Typescript", "onlyTypescript", "onlyTs", "only-ts", "only-typescript"],
     onlyTemplate: ["template", "Template", "only-template"],
